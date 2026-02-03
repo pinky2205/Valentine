@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<title>My Valentine 💖</title>
+
+<style>
+body {
+  margin:0;
+  height:100vh;
+  overflow:hidden;
+  font-family: 'Pacifico', cursive;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  color : #bf2c7d
+
+}
+
+.center {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.card {
+  background:white;
+  padding:35px 45px;
+  border-radius:18px;
+  text-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,.2);
+  position:relative;
+  z-index:2;
+}
+
+/* Page 1 */
+#page1 h1 { margin-bottom:20px; }
+
+.buttons {
+  position:relative;
+  height:80px;
+  margin-top:20px;
+}
+
+button {
+  padding:12px 28px;
+  border:none;
+  border-radius:20px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+#yesBtn {
+  background:#f35572;
+  color:white;
+  position:absolute;
+  left:0;
+}
+
+#noBtn {
+  background:#4caf50;
+  color:white;
+  position:absolute;
+  right:0;
+}
+
+/* Page 2 */
+#page2 { display:none; }
+
+.photo {
+  width:220px;
+  height:220px;
+  object-fit:cover;
+  border-radius:16px;
+  margin:15px 0;
+}
+.valentine {
+  font-family: 'Great Vibes', cursive;
+  color: #d1003f;
+  font-size: 48px;
+}
+
+/* Hearts */
+.heart {
+  position:absolute;
+  bottom:-20px;
+  animation:floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  from {transform:translateY(0); opacity:1;}
+  to {transform:translateY(-110vh); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div id="page1" class="center">
+  <div class="card">
+    <h1>Will you be my Valentine? 💘</h1>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes</button>
+      <button id="noBtn">No</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="center">
+  <div class="card">
+    <h1 class="valentine">Happy 3rd Valentine 💖</h1>
+    <!-- Change us.jpg if needed -->
+    <img src="us.png.jpg" class="photo">
+    <h3 class="escape">I knew you couldn’t escape me 😌💖<br>Happy 3rd Valentine, my love 🥰</h3>
+
+
+  </div>
+</div>
+
+<script>
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const page1 = document.getElementById("page1");
+const page2 = document.getElementById("page2");
+
+// NO runs away 😄
+function moveNo(){
+  const x = Math.random()*200-100;
+  const y = Math.random()*80-40;
+  noBtn.style.transform = `translate(${x}px,${y}px)`;
+}
+
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("click", moveNo);
+
+// YES goes to next page
+yesBtn.addEventListener("click", ()=>{
+  page1.style.display="none";
+  page2.style.display="flex";
+});
+
+// Floating hearts
+function heart(){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="💗";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(Math.random()*20+15)+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+}
+
+setInterval(heart,400);
+</script>
+
+</body>
+</html>
